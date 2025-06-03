@@ -1,0 +1,163 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    /* Green gradient background with matching shades of green */
+    background: linear-gradient(135deg, #1c5d42, #3e9a77);
+    /* Dark green to medium green */
+    color: #fff;
+    /* White text for contrast */
+    padding: 20px;
+    scroll-behavior: smooth;
+}
+
+.about-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #ffffff;
+    /* White background for the container */
+    padding: 20px;
+    border-radius: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.about-header {
+    text-align: center;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.about-header h1 {
+    font-size: 4rem;
+    color: #2c6e49;
+    /* Medium green for the header */
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+    margin-left: 20px;
+    /* Space between the logo and text */
+}
+
+.about-header p {
+    font-size: 1.7rem;
+    margin-top: 0px;
+    color: #0e0d0d;
+    /* Soft gray for the subheading text */
+}
+
+/* Box Styling */
+.about-box {
+    position: relative;
+    background: #e7f6f0;
+    /* Light green background for the box */
+    border-radius: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    margin: 0px;
+    font-size: 22px;
+    margin-bottom: 100px;
+    max-width: 80%;
+    height: 370px;
+
+    transition: transform 0.8s ease, box-shadow 0.8s ease;
+}
+
+.about-box.animate {
+    transform: scale(1.05);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Image Styling */
+.about-image {
+    position: absolute;
+    right: -200px;
+    /* Adjusted spacing */
+    top: 47%;
+    margin: 100px;
+    transform: translateY(-50%);
+    width: 250px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    opacity: 1;
+    transition: transform 0.6s ease, opacity 0.6s ease;
+}
+
+.about-image.animate {
+    animation: tilt-in-right-1 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+/* Keyframes for Tilt-in-Right Animation */
+@keyframes tilt-in-right-1 {
+    0% {
+        transform: translateX(300px) rotate(30deg);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(0) rotate(0);
+        opacity: 1;
+    }
+}
+
+/* Responsive Adjustments */
+@media screen and (max-width: 768px) {
+    .about-image {
+        right: -120px;
+        width: 120px;
+    }
+}
+
+.about-logo {
+    position: relative;
+    width: 200px;
+    /* Adjust logo size */
+    margin-right: 20px;
+}
+
+.about-box ul {
+    padding-left: 20px; /* Add space to the left of bullet points */
+    margin: 0;
+    list-style-position: inside; /* Optional: Keep bullets inside box edges */
+}
+
+.about-box p {
+    color: #0e0d0d;
+}
+
+.about-box li {
+    color: #0e0d0d;
+}
+
+.about-box h2,
+li,
+p {
+    color: #0e0d0d;
+}
+
+/* Logo Link Style */
+.about-logo-link {
+    display: inline-block;
+    text-decoration: none;
+    /* Remove the underline from the link */
+}
+
+.about-logo {
+    position: relative;
+    width: 80px;
+    /* Adjust logo size */
+    margin-right: 20px;
+    transition: transform 0.3s ease-in-out;
+    /* Smooth scaling on hover */
+}
+
+/* Hover Effect for Logo */
+.about-logo:hover {
+    transform: scale(1.1);
+    /* Scale logo slightly when hovered */
+}
+

@@ -1,0 +1,458 @@
+        /* Basic reset */
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            background: #ffffff;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+
+        /* Header styling */
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            height: 81 px;
+            background: radial-gradient(circle, #00ff7f, #00e161, #01ca47, #01b428);
+            color: #fff;
+        }
+
+        .logo img {
+            height: 100px;
+            position: relative;
+            top: 5px;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        nav {
+            position: relative;
+            z-index: 2;
+            /* Ensure navigation is above the video */
+        }
+
+        .nav-item {
+            position: relative;
+            margin-left: 20px;
+            justify-content: center;
+        }
+
+        .nav-item a {
+            color: #18038d;
+            font-weight: bold;
+            font-family: Cambria, Georgia, 'Times New Roman', serif;
+            font-size: 29px;
+            text-decoration: none;
+            padding: 10px;
+            display: block;
+        }
+
+        @keyframes lightSpeedInRight {
+            0% {
+                opacity: 0;
+                transform: translateX(100%) skewX(-30deg);
+            }
+
+            60% {
+                opacity: 1;
+                transform: translateX(-20%) skewX(20deg);
+            }
+
+            80% {
+                transform: translateX(10%) skewX(-5deg);
+            }
+
+            100% {
+                transform: translateX(0%);
+            }
+        }
+
+        .animated {
+            opacity: 1;
+            animation: lightSpeedInRight 1s ease both;
+        }
+
+
+
+
+        .nav-item a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 4px;
+            background-color: #000000;
+            left: 0;
+            bottom: 0;
+            transition: width 0.4s ease;
+        }
+
+        .nav-item a:hover::after {
+            width: 40%;
+            left: 30%;
+        }
+
+        .nav-item a:hover {
+            color: #ffeb3b;
+            transition: background-color 0.3s ease;
+        }
+
+        .dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            z-index: 20;
+            background-color: #ff69b4;
+            padding: 10px;
+            border-radius: 4px;
+            min-width: 150px;
+        }
+
+        .dropdown a {
+            color: #fff;
+            text-decoration: none;
+            display: block;
+            padding: 8px;
+            z-index: 15;
+        }
+
+        .dropdown a:hover {
+            background-color: #ff1493;
+            z-index: 20;
+        }
+
+        .nav-item:hover .dropdown {
+            display: block;
+            animation: dropdown-fade-in 0.3s ease;
+        }
+
+        @keyframes dropdown-fade-in {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Hide content initially */
+        .hidden {
+            opacity: 0;
+            transform: translateY(100px);
+            transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
+        }
+
+        /* Loading screen */
+        #loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 100000;
+            text-align: center;
+        }
+
+        .logo-loading {
+            width: 450px;
+            transition: width 1s ease, opacity 1s ease, filter 1s ease;
+            opacity: 0.6;
+            margin-bottom: 30px;
+            filter: grayscale(100%);
+        }
+
+        .quality-message {
+            font-family: Impact, sans-serif;
+            font-size: 50px;
+        }
+
+
+
+        .loading-text {
+            margin-top: 0px;
+            font-size: 70px;
+            color: #333;
+        }
+
+
+        #curtain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background-color: white;
+            z-index: 1;
+            /* Ensure it is above everything else */
+            transform: translateY(100%);
+            /* Start from below the viewport */
+            transition: transform 0.5s ease-in-out;
+            /* Smooth transition */
+        }
+
+        /* Main Content styling */
+        #main-content.hidden {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(100%);
+            /* Start from below the screen */
+            transition: opacity 0s ease-in-out, transform 0s ease-in-out;
+        }
+
+        #main-content.slide-up {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+
+            /* Slide up to its original position */
+        }
+
+
+        .video-section {
+            position: relative;
+            width: 100vw;
+            height: 79vh;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        /* Video background styles */
+        #background-video {
+            width: 100%;
+            height: auto;
+
+            z-index: 1;
+            object-fit: cover;
+            /* Ensures the video covers the entire section */
+
+            /* Fallback color */
+        }
+
+        /* Transparent Box styling */
+        .transparent-box {
+            position: absolute;
+            top: 15%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 70%;
+            height: 20vh;
+            background-color: rgba(255, 255, 255, 0.2);
+            /* Transparent white */
+            border: 5px solid #01b428;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(10px);
+            /* Adds a blur effect behind the box */
+        }
+
+        .transparent-box h1 {
+            font-size: 50px;
+            color: #ffffff;
+            font-family: 'Arial', sans-serif;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+            /* Adds a subtle shadow to the text */
+            text-align: center;
+            margin: 0;
+        }
+
+        @media (max-width: 768px) {
+            .transparent-box h1 {
+                font-size: 30px;
+            }
+
+            .transparent-box {
+                width: 90%;
+                height: 15vh;
+            }
+        }
+
+        .box {
+            width: 500px;
+            height: 150px;
+            background-color: #00ff80ad;
+            z-index: 10;
+            transform-origin: 100% 100%;
+            margin: 20px auto;
+            /* Center the box */
+        }
+
+        .scale-up-hor-right {
+            animation: scale-up-hor-right 1.5s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+        }
+
+        @keyframes scale-up-hor-right {
+            0% {
+                transform: scaleX(0);
+                transform-origin: 0% 0%;
+                opacity: 1;
+            }
+
+            100% {
+                transform: scaleX(1);
+                transform-origin: 0% 0%;
+                opacity: 1;
+            }
+        }
+        /* Ensure the body takes up the full viewport */
+body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* The container for the video */
+  .video-container {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* Full height of the screen */
+  }
+  
+  /* Styling the video */
+  #background-video {
+    width: 10%;
+    height: 50%;
+    object-fit: cover; /* Ensures the video covers the entire screen */
+  }
+  
+  /* The overlay containing the text */
+  .video-overlay {
+    position: absolute;
+    top: 67%;
+    left: 36%;
+    transform: translate(-50%, -50%); /* Centering the text */
+    color: white; /* Text color */
+    text-align: center;
+    z-index: 2; /* Makes sure the text stays on top of the video */
+    font-family: Arial, sans-serif;
+    font-size: 3rem;
+    font-weight: bold;
+  }
+  
+  /* Optional: Add animation to the text */
+  .overlay-text {
+    animation: fadeInText 2s ease-out forwards;
+  }
+    .overlay-text-1 {
+    position: relative;
+    bottom: 50px;
+    animation: fadeInText 3s ease-out forwards;
+  }
+  
+  @keyframes fadeInText {
+    0% {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .overlay-image {
+    position: absolute;
+    top: 10%;
+    left: 125%;
+    transform: translateX(-50%); /* Centers the image horizontally */
+    width: 300px; /* Adjust size of the image */
+    z-index: 2; /* Keeps the image above the video */
+  }
+  footer {
+    position: relative;
+    bottom: 10px;
+    height: 12px;
+    width: 100%;
+    background: #000000; /* Matching the theme color */
+    color: #ffffff;
+    text-align: center;
+    padding: 10px ;
+    font-family: 'Arial', sans-serif;
+    font-size: 17px;
+}
+
+footer p {
+    position: relative;
+    top: 3px;
+    margin: 0;
+}
+
+
+
+/* CSS */
+.button-56 {
+  align-items: center;
+  background-color: #fee6e3;
+  border: 2px solid #111;
+  border-radius: 8px;
+  box-sizing: border-box;
+  color: #111;
+  cursor: pointer;
+  display: flex;
+  font-family: Inter,sans-serif;
+  font-size: 16px;
+  height: 48px;
+  justify-content: center;
+  line-height: 24px;
+  max-width: 100%;
+  padding: 0 25px;
+  position: relative;
+  left: 100px;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-56:after {
+  background-color: #111;
+  border-radius: 8px;
+  content: "";
+  display: block;
+  height: 48px;
+  left: 0;
+  width: 100%;
+  position: absolute;
+  top: -2px;
+  transform: translate(8px, 8px);
+  transition: transform .2s ease-out;
+  z-index: -1;
+}
+
+.button-56:hover:after {
+  transform: translate(0, 0);
+}
+
+.button-56:active {
+  background-color: #ffdeda;
+  outline: 0;
+}
+
+.button-56:hover {
+  outline: 0;
+}
+
+@media (min-width: 768px) {
+  .button-56 {
+    padding: 0 40px;
+  }
+}

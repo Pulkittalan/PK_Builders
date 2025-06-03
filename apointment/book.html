@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Book Service - Pulkit Kumar Builders</title>
+<link rel="stylesheet" href="book.css">
+<link rel="icon" href="/img/pkb_icon.ico" type="image/x-icon">
+<div class="logo">
+        <a href="/public/index.html" class="about-logo-link">
+            <img src="/public/img/pkb_icon.ico" alt="Pulkit Kumar Builders Logo">
+        </a>
+    </div>
+</head>
+<body>
+  <div class="appointment-container">
+    <h1>Book Construction Service</h1>
+    <form id="book-form">
+      <label for="name">Your Name <span style="color:red">*</span></label>
+      <input type="text" id="name" name="name" required placeholder="e.g. Pulkit Sharma" />
+
+      <label for="email">Email <span style="color:red">*</span></label>
+      <input type="email" id="email" name="email" required placeholder="you@example.com" />
+
+      <label for="phone">Phone <span style="color:red">*</span></label>
+      <input type="tel" id="phone" name="phone" required placeholder="+91 9876543210" pattern="^\+?[\d\s-]{7,15}$" />
+
+      <label for="serviceType">Select Construction Service <span style="color:red">*</span></label>
+      <select id="serviceType" name="serviceType" required>
+        <option value="" disabled selected>Select a service</option>
+        <option value="road-highway">Road & Highway Construction</option>
+        <option value="pipeline">Pipeline Installation</option>
+        <option value="flyover">Flyover / Bridge</option>
+        <option value="septic-tank">Septic Tank / Drainage</option>
+        <option value="rural">PMGSY Rural Roads</option>
+        <option value="bitumen">Bitumen / Concrete Roads</option>
+      </select>
+      <label for="appointmentDate">Preferred Date <span aria-hidden="true" style="color:red;">*</span></label>
+      <input type="date" id="appointmentDate" name="appointmentDate" min="" required aria-required="true" />
+      <label for="appointmentTime">Preferred Time <span aria-hidden="true" style="color:red;">*</span></label>
+      <input type="time" id="appointmentTime" name="appointmentTime" required aria-required="true" />
+      <fieldset>
+        <legend>Consultation Type <span class="optional">(optional)</span></legend>
+        <div class="checkbox-group" role="group" aria-label="Consultation Type">
+          <label><input type="checkbox" name="consultation-type" value="phone" /> Phone Call</label>
+          <label><input type="checkbox" name="consultation-type" value="video" /> Video Call</label>
+          <label><input type="checkbox" name="consultation-type" value="in-person" /> In-Person</label>
+        </div>
+      </fieldset>
+
+      <label for="location">Construction Location <span style="color:red">*</span></label>
+      <input type="text" id="location" name="location" required placeholder="e.g. Varanasi, Uttar Pradesh" />
+
+      <label for="notes">Project Description (Optional)</label>
+      <textarea id="notes" name="notes" placeholder="Describe your project or request..."></textarea>
+
+      <button type="submit">Submit Booking</button>
+      <p class="confirmation" id="confirmation"></p>
+    </form>
+  </div>
+
+<script src="book.js"></script>
+</body>
+</html>

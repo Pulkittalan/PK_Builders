@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Pulkit Kumar Builders - Services</title>
+<link rel="icon" href="/public/img/pkb_icon.ico" type="image/x-icon">
+<link rel="stylesheet" href="./services.css">
+</head>
+<body>
+<header>
+    <h1>PULKIT KUMAR BUILDERS</h1>
+    <div class="logo">
+        <a href="/public/index.html" class="about-logo-link">
+            <img src="/public/img/pkb_icon.ico" alt="Pulkit Kumar Builders Logo">
+        </a>
+    </div>
+    <nav>
+        <a href="#services">Services</a>    
+        <a href="#contact">Contact Us</a>
+    </nav>
+</header>
+
+<!-- Hero image -->
+<img src="https://image.cnbcfm.com/api/v1/image/106811484-1608045351058-gettyimages-1126750618-dsc_1540.jpeg?v=1608045431" alt="Construction Site with Crane and Workers" class="hero-image" />
+
+<div class="container" id="services">
+    <h2>Our Construction Services</h2>
+    <p class="intro">
+       PULKIT KUMAR BUILDERS, the Construction Company has over 10 years of experience providing top-quality construction and civil engineering services. Our team specializes in delivering innovative and durable infrastructure projects that build a stronger community. With a commitment to safety, sustainability, and client satisfaction, we handle projects from highways to drainage systems with precision and care.
+    </p>
+
+    <div class="services-category">
+        <h3>1. Road &amp; Highway Construction</h3>
+        <ul class="services-list" role="list">
+            <li data-service="national-highways">National Highways (NH)</li>
+            <li data-service="state-highways">State Highways (SH)</li>
+            <li data-service="rural-roads">Rural Roads (PMGSY)</li>
+            <li data-service="expressways">Expressways and Flyovers</li>
+            <li data-service="bitumen-roads">Bitumen, Concrete, and Interlocking Roads</li>
+        </ul>
+    </div>
+
+    <div class="services-category">
+        <h3>2. Sewerage &amp; Drainage Systems</h3>
+        <ul class="services-list" role="list">
+            <li data-service="sewer-pipeline">Sewer Pipeline Laying (HDPE, RCC, DI)</li>
+            <li data-service="stormwater-drainage">Stormwater Drainage</li>
+            <li data-service="septic-tanks">Septic Tank and STP (Sewage Treatment Plant)</li>
+            <li data-service="manhole-construction">Manhole Construction</li>
+        </ul>
+    </div>
+</div>
+
+<!-- Popup and Overlay -->
+<div class="overlay" id="overlay"></div>
+<div class="popup" id="popup" tabindex="0" role="dialog" aria-modal="true" aria-labelledby="popup-title" aria-describedby="popup-description">
+    <img id="popup-image" src="" alt="Service Image" />
+    <h4 id="popup-title"></h4>
+    <p id="popup-description"></p>
+</div>
+
+<footer id="contact">
+    <p>Contact us: <a href="mailto:info@abcconstruction.com" style="color:#95caff; text-decoration:none;">info@abcconstruction.com</a> | Phone: (123) 456-7890</p>
+    <p>© 2023 ABC Construction Company. All Rights Reserved.</p>
+</footer>
+
+<script>
+    const overlay = document.getElementById('overlay');
+    const popup = document.getElementById('popup');
+    const popupImage = document.getElementById('popup-image');
+    const popupTitle = document.getElementById('popup-title');
+    const popupDescription = document.getElementById('popup-description');
+
+    // Detailed info for each service - different content per service
+    const serviceDetails = {
+        'national-highways': {
+            image: 'https://mews.in/wp-content/uploads/2022/06/Durgapur_Xpressway-scaled.jpg',
+            title: 'National Highways (NH)',
+            description: 'Our expertise includes building and maintaining national highways, offering smooth and safe transport infrastructure across the nation.'
+        },
+        'state-highways': {
+            image: 'https://th.bing.com/th/id/OIP.Pj_5Y7N-Zqign3oG_LNqLwHaFj?w=236&h=180&c=7&r=0&o=5&dpr=1.1&pid=1.7',
+            title: 'State Highways (SH)',
+            description: 'Construction and renovation of state highways focused on enhanced connectivity and durability tailored to regional needs.'
+        },
+        'rural-roads': {
+            image: 'https://tse2.mm.bing.net/th/id/OIP.ajNNcaGcMYWkaXf3TqMTbwHaFj?rs=1&pid=ImgDetMain',
+            title: 'Rural Roads (PMGSY)',
+            description: 'We develop rural roads under the PMGSY scheme, strengthening rural connectivity and improving accessibility.'
+        },
+        'expressways': {
+            image: 'https://c.ndtvimg.com/2023-02/k4pagjd_delhi-mumbai-expressway_625x300_11_February_23.jpeg',
+            title: 'Expressways and Flyovers',
+            description: 'Specialized construction of expressways and flyovers reducing traffic congestion and boosting commuter efficiency.'
+        },
+        'bitumen-roads': {
+            image: 'https://images.unsplash.com/photo-1527443154391-507e9dc6c5cc?auto=format&fit=crop&w=1350&q=80',
+            title: 'Bitumen, Concrete, and Interlocking Roads',
+            description: 'Durable road surfaces including bitumen, concrete, and interlocking paving designed for diverse traffic and environmental conditions.'
+        },
+        'sewer-pipeline': {
+            image: 'https://images.unsplash.com/photo-1593642632780-1c4e1f1c1c1b?auto=format&fit=crop&w=1350&q=80',
+            title: 'Sewer Pipeline Laying (HDPE, RCC, DI)',
+            description: 'Installation of advanced sewer pipelines made from HDPE, RCC, and DI materials, ensuring robust sewerage infrastructure.'
+        },
+        'stormwater-drainage': {
+            image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1350&q=80',
+            title: 'Stormwater Drainage',
+            description: 'Comprehensive stormwater drainage systems designed to prevent flooding and ensure efficient water flow.'
+        },
+        'septic-tanks': {
+            image: 'https://images.unsplash.com/photo-1468071174046-657d9d351a40?auto=format&fit=crop&w=1350&q=80',
+            title: 'Septic Tank and STP (Sewage Treatment Plant)',
+            description: 'Advanced septic tank and sewage treatment plant construction ensuring environmentally safe and effective waste management.'
+        },
+        'manhole-construction': {
+            image: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1350&q=80',
+            title: 'Manhole Construction',
+            description: 'Reliable and safe manhole constructions for access and maintenance of sewerage and drainage systems.'
+        }
+    };
+
+    function showPopup(serviceKey) {
+    if (!serviceKey || !serviceDetails[serviceKey]) return;
+
+    const detail = serviceDetails[serviceKey];
+    popupImage.src = detail.image;
+    popupImage.alt = detail.title + " Image";
+    popupTitle.textContent = detail.title;
+    popupDescription.textContent = detail.description;
+
+    overlay.classList.add('show');
+    popup.classList.add('show');
+    document.body.classList.add('modal-open');  // Disable background scroll
+    popup.focus();
+}
+
+function hidePopup() {
+    overlay.classList.remove('show');
+    popup.classList.remove('show');
+    document.body.classList.remove('modal-open');  // Restore scroll
+}
+
+
+    // Add click event to services
+    document.querySelectorAll('.services-list li').forEach(item => {
+        item.addEventListener('click', () => {
+            const serviceKey = item.getAttribute('data-service');
+            showPopup(serviceKey);
+        });
+    });
+
+    // Close popup when clicking outside the popup (overlay)
+    overlay.addEventListener('click', hidePopup);
+
+    // Close popup on pressing Escape key
+    document.addEventListener('keydown', event => {
+        if (event.key === "Escape" && popup.classList.contains('show')) {
+            hidePopup();
+        }
+    });
+</script>
+</body>
+</html>
+
